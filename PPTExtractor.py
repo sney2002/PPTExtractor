@@ -152,8 +152,10 @@ class PPT(PowerPointFormat):
         """
         olefile = OleFile.OleFileIO(filename)
         
+        # Al igual que en pptx esto no es un error
         if not olefile.exists("Pictures"):
-            raise IOError("Pictures stream not found")
+            return
+            #raise IOError("Pictures stream not found")
         
         self.__stream = olefile.openstream("Pictures")
 
